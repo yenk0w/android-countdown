@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CountdownDetailFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.countdown.model.CountdownViewModel" />
+        <variable
+            name="countdownDetailFragment"
+            type="com.example.countdown.CountdownDetailFragment" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/btnAddOrUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:onClick="@{() -> countdownDetailFragment.addOrUpdateCountdown()}"
+                android:text="@{viewModel.addOrUpdateBtnText}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_event_name"
+                    android:text="@={viewModel.desc}"
+                    android:inputType="text"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvDatePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint="@string/hint_select_date"
+                    android:onClick="@{ () -> countdownDetailFragment.showDatePickerDialog()}"
+                    android:text="@={viewModel.dateEnd}"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.565" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvTimePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint="@string/hint_select_hour"
+                    android:onClick="@{ () -> countdownDetailFragment.showTimePickerDialog()}"
+                    android:text="@={viewModel.hourEnd}"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swReminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="35dp"
+                android:scaleX="1.1"
+                android:scaleY="1.12"
+                android:text="@string/reminder"
+                android:checked="@={viewModel.reminder}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:text="@={viewModel.addOrUpdateTitleText}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
